@@ -1,102 +1,140 @@
 
-# Vexa Store 🛍️
-
-**E-commerce desenvolvido com Python e Flask, utilizando Banco de Dados Poliglota.**
+# Vexa Store — Sistema de E-commerce
 
 **Aluno:** Ronald Machado  
 **Professor:** Anderson Soares  
 **Disciplina:** Projeto Banco de Dados  
 **Atividade:** 3ª Avaliação — 2026
 
-<p align="center">
-  <img src="docs/imagens/01-pagina-inicial.png" alt="Página inicial da Vexa" width="850">
-</p>
-
 ## Sobre o projeto
 
-A **Vexa Store** é um sistema de e-commerce com catálogo de produtos, carrinho de compras, painel administrativo e finalização de pedidos pelo WhatsApp.
+A Vexa Store é um sistema de e-commerce desenvolvido em Python com Flask, utilizando o conceito de Banco de Dados Poliglota. O projeto integra Supabase, MongoDB Atlas e Redis Cloud, distribuindo as responsabilidades de armazenamento conforme as funcionalidades da aplicação.
 
-O projeto utiliza três tecnologias de banco de dados, cada uma com uma finalidade específica: **Supabase (PostgreSQL)**, **MongoDB Atlas** e **Redis Cloud**.
+O sistema conta com catálogo de produtos, painel administrativo, carrinho de compras, cadastro de clientes e preparação de pedidos para o WhatsApp.
 
-### Tecnologias utilizadas
+A interface foi desenvolvida com HTML, CSS e JavaScript, seguindo uma identidade visual em azul e branco. O logotipo da Vexa foi criado manualmente no Canva.
 
-- **Python e Flask:** desenvolvimento do backend.
-- **HTML, CSS, JavaScript e Jinja2:** interface web responsiva.
-- **Supabase Auth e PostgreSQL:** autenticação e dados de clientes.
-- **MongoDB Atlas:** armazenamento e gerenciamento de produtos.
-- **Redis Cloud:** cache de produtos visualizados e sessões temporárias.
-- **PyMongo, redis-py, Requests, Pillow e python-dotenv:** integrações e funcionalidades auxiliares.
-- **Canva:** criação manual do logotipo da Vexa.
-- **Git e GitHub:** versionamento e organização do projeto.
+<p align="center">
+  <img src="docs/imagens/01-pagina-inicial.png" width="900" alt="Página inicial da Vexa">
+</p>
 
-## Bancos de dados
+## Tecnologias e bancos de dados
 
-| Banco | Utilização |
+| Tecnologia | Utilização |
 |---|---|
-| **Supabase** | Login do administrador e clientes, perfis e histórico de pedidos preparados. |
-| **MongoDB Atlas** | Cadastro, consulta, edição e exclusão de produtos no banco `vexa_store`, coleção `produtos`. |
-| **Redis Cloud** | Armazenamento temporário dos produtos visualizados recentemente e das sessões de clientes. |
+| Python e Flask | Backend e funcionamento da aplicação |
+| HTML, CSS e JavaScript | Interface web e interatividade |
+| Supabase Auth | Autenticação do administrador e dos clientes |
+| PostgreSQL (Supabase) | Armazenamento de perfis e pedidos preparados |
+| MongoDB Atlas | Cadastro, consulta, edição e exclusão de produtos |
+| Redis Cloud | Cache dos produtos visualizados e sessões temporárias |
+| WhatsApp | Redirecionamento com mensagem do pedido |
+| Canva | Criação manual do logotipo |
 
-### Estrutura do PostgreSQL
+### Organização dos dados
 
-Além da estrutura `auth.users`, gerenciada pelo Supabase Auth, foram utilizadas duas tabelas:
+**Supabase:** responsável pela autenticação e pelas informações relacionadas aos clientes. Além da estrutura `auth.users`, foram criadas as tabelas `vexa_clientes` e `vexa_pedidos`, com relacionamentos e políticas de segurança RLS.
 
-**`vexa_clientes`**
-- `id` — UUID, chave primária e referência a `auth.users`.
-- `nome` — nome do cliente.
-- `criado_em` — data do cadastro.
+O código SQL utilizado está disponível em [SUPABASE_CLIENTES.sql](SUPABASE_CLIENTES.sql).
 
-**`vexa_pedidos`**
-- `id` — UUID, identificador do pedido.
-- `cliente_id` — referência ao usuário autenticado.
-- `itens` — JSONB contendo os produtos.
-- `total_centavos` — valor total em centavos.
-- `status` — situação do pedido.
-- `criado_em` — data de criação.
+**MongoDB Atlas:** utilizado para armazenar os produtos no banco `vexa_store`, coleção `produtos`. Cada produto possui informações como código, nome, categoria, descrição, preço, imagem e destaque.
 
-As tabelas utilizam **Row Level Security (RLS)** para restringir o acesso aos dados do próprio cliente.
+**Redis Cloud:** responsável pelo armazenamento temporário dos produtos visualizados recentemente, além de auxiliar no gerenciamento das sessões de clientes.
 
-O script de criação das tabelas, relacionamentos, índice e políticas está disponível em:
+## Funcionalidades do sistema
 
-**[SUPABASE_CLIENTES.sql](SUPABASE_CLIENTES.sql)**
+A loja permite visualizar os produtos disponíveis, pesquisar itens, navegar por categorias e adicionar produtos ao carrinho. O usuário pode alterar as quantidades, remover itens e consultar o valor total da compra.
 
-## Funcionalidades
+A finalização gera uma mensagem com os produtos selecionados, suas quantidades e o valor total, redirecionando o usuário para o WhatsApp. O sistema não realiza pagamentos diretamente.
+
+### Catálogo e carrinho
+
+<p align="center">
+  <img src="docs/imagens/02-categorias.png" width="48%" alt="Categorias">
+  <img src="docs/imagens/03-catalogo.png" width="48%" alt="Catálogo">
+</p>
+
+<p align="center">
+  <img src="docs/imagens/04-carrinho.png" width="850" alt="Carrinho de compras">
+</p>
+
+### Cadastro e acesso dos clientes
+
+Foi implementada uma área de clientes integrada ao Supabase, permitindo criar uma conta, realizar login, atualizar o nome e consultar o histórico dos pedidos preparados.
+
+<p align="center">
+  <img src="docs/imagens/05-login-cliente.png" width="48%" alt="Login do cliente">
+  <img src="docs/imagens/06-minha-conta.png" width="48%" alt="Área do cliente">
+</p>
 
 ### Administração
-- Login restrito utilizando Supabase Auth.
-- Painel com indicadores do catálogo.
-- Cadastro, edição, consulta e exclusão de produtos no MongoDB.
-- Gerenciamento de nome, descrição, categoria, preço, SKU, imagem e destaque.
 
-### Loja e clientes
-- Catálogo com pesquisa e filtros por categoria.
-- Visualização detalhada dos produtos.
-- Carrinho com quantidade, remoção de itens e cálculo automático do total.
-- Redirecionamento para o WhatsApp com mensagem do pedido formatada.
-- Cadastro e login de clientes pelo Supabase.
-- Perfil do cliente e histórico de pedidos preparados.
-- Histórico de produtos visualizados utilizando Redis.
+O painel administrativo possui autenticação restrita pelo Supabase e permite gerenciar os produtos armazenados no MongoDB.
 
-O sistema prepara o pedido para o WhatsApp, sem processar pagamentos.
+O administrador pode cadastrar, editar, consultar e excluir produtos, além de visualizar informações gerais do catálogo. Os produtos cadastrados ficam disponíveis na vitrine da loja.
 
-## Como executar
+<p align="center">
+  <img src="docs/imagens/12-login-administrador.png" width="850" alt="Login administrativo">
+</p>
+
+<p align="center">
+  <img src="docs/imagens/07-painel-admin.png" width="48%" alt="Painel administrativo">
+  <img src="docs/imagens/08-listagem-admin.png" width="48%" alt="Lista de produtos">
+</p>
+
+<p align="center">
+  <img src="docs/imagens/09-cadastro-produto.png" width="48%" alt="Cadastro de produto">
+  <img src="docs/imagens/11-editar-produto.png" width="48%" alt="Edição de produto">
+</p>
+
+## Estrutura do projeto
+
+```text
+vexa-sistema/
+├── app.py
+├── clientes.py
+├── seed.py
+├── verificar_conexoes.py
+├── verificar_historico.py
+├── testes_basicos.py
+├── SUPABASE_CLIENTES.sql
+├── requirements.txt
+├── .env.example
+├── iniciar_windows.bat
+├── templates/
+├── static/
+├── data/
+├── docs/
+│   └── imagens/
+└── README.md
+```
+
+O `app.py` concentra a aplicação Flask e as rotas principais. O `clientes.py` implementa as funcionalidades de autenticação e gerenciamento dos clientes. O `seed.py` permite carregar os produtos iniciais no MongoDB.
+
+As páginas HTML estão em `templates`, enquanto os arquivos CSS, JavaScript e as imagens utilizadas pela loja estão em `static`. A pasta `data` contém os dados de demonstração.
+
+## Configuração e execução
+
+O projeto foi desenvolvido em ambiente Windows, utilizando Python 3.11 e Visual Studio Code.
 
 **1. Instalar as dependências**
+
+Abra o terminal na pasta do projeto e execute:
 
 ```powershell
 python -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
 ```
 
-**2. Configurar os bancos**
+**2. Configurar os bancos de dados**
 
-Copie `.env.example` para `.env` e preencha as credenciais do Supabase, MongoDB e Redis, além do número do WhatsApp.
+Crie o arquivo `.env` com base no `.env.example` e preencha as credenciais do Supabase, MongoDB Atlas e Redis Cloud, além do número de WhatsApp da loja.
 
-Configure `DEMO_MODE=false` para utilizar os serviços reais.
+Configure `DEMO_MODE=false` para utilizar as conexões reais.
 
-No SQL Editor do Supabase, execute o conteúdo de `SUPABASE_CLIENTES.sql`.
+No Supabase, execute o arquivo `SUPABASE_CLIENTES.sql` pelo SQL Editor para criar as tabelas e as políticas de acesso, caso ainda não estejam configuradas.
 
-Para carregar os produtos iniciais no MongoDB, se necessário:
+Para carregar os produtos iniciais no MongoDB, utilize:
 
 ```powershell
 .\.venv\Scripts\python.exe seed.py
@@ -108,71 +146,43 @@ Para carregar os produtos iniciais no MongoDB, se necessário:
 .\.venv\Scripts\python.exe verificar_conexoes.py
 ```
 
-**4. Executar a aplicação**
+Durante os testes, os três serviços responderam corretamente:
+
+```text
+[OK] MongoDB - Conectado
+[OK] Redis - Conectado
+[OK] Supabase Auth - Conectado
+
+SUCESSO: Os três serviços responderam!
+Modo integrado ativado.
+```
+
+<p align="center">
+  <img src="docs/imagens/10-conexoes.png" width="850" alt="Diagnóstico das conexões">
+</p>
+
+**4. Iniciar o sistema**
 
 ```powershell
 .\.venv\Scripts\python.exe -c "from app import app; app.run(host='127.0.0.1', port=5001, debug=False)"
 ```
 
-**Acessos locais:**
+Após iniciar a aplicação, acesse:
 
-- Loja: http://127.0.0.1:5001
-- Administrador: http://127.0.0.1:5001/admin/login
-- Cadastro de clientes: http://127.0.0.1:5001/cliente/cadastro
+- **Loja:** http://127.0.0.1:5001
+- **Administrador:** http://127.0.0.1:5001/admin/login
+- **Cadastro de clientes:** http://127.0.0.1:5001/cliente/cadastro
 
-O arquivo `.env` contém credenciais privadas e não deve ser publicado no GitHub.
-
-## Telas do sistema
-
-### Página inicial
-
-![Página inicial da Vexa](docs/imagens/01-pagina-inicial.png)
-
-### Categorias e catálogo
-
-| Categorias | Produtos |
-|---|---|
-| ![Categorias](docs/imagens/02-categorias.png) | ![Catálogo](docs/imagens/03-catalogo.png) |
-
-### Carrinho de compras
-
-![Carrinho de compras](docs/imagens/04-carrinho.png)
-
-### Área do cliente
-
-| Login do cliente | Perfil e pedidos |
-|---|---|
-| ![Login do cliente](docs/imagens/05-login-cliente.png) | ![Perfil do cliente](docs/imagens/06-minha-conta.png) |
-
-### Login administrativo
-
-![Login administrativo](docs/imagens/12-login-administrador.png)
-
-### Painel administrativo
-
-| Visão geral | Lista de produtos |
-|---|---|
-| ![Painel](docs/imagens/07-painel-admin.png) | ![Produtos](docs/imagens/08-listagem-admin.png) |
-
-### Cadastro e edição de produtos
-
-| Cadastrar produto | Editar produto |
-|---|---|
-| ![Cadastro](docs/imagens/09-cadastro-produto.png) | ![Edição](docs/imagens/11-editar-produto.png) |
-
-### Verificação dos bancos de dados
-
-![MongoDB, Redis e Supabase conectados](docs/imagens/10-conexoes.png)
-
-O diagnóstico demonstrou a conexão com os três serviços utilizados pela aplicação.
+As credenciais devem permanecer no arquivo `.env`, que não deve ser enviado ao repositório.
 
 ## Vídeo de demonstração
 
 **Vídeo da 3ª Avaliação:**
-(https://drive.google.com/file/d/10MB6k9dIEQ6-mY4GZRyoOa6r_H3iUkx4/view?usp=sharing)
 
-A demonstração deverá apresentar o login administrativo, o cadastro de um produto com atualização do catálogo e uma compra simulada com redirecionamento para o WhatsApp.
+[[link do vídeo](https://drive.google.com/file/d/10MB6k9dIEQ6-mY4GZRyoOa6r_H3iUkx4/view?usp=sharing)]
+
+A demonstração apresenta o login do administrador, o cadastro de um novo produto com atualização no catálogo e a simulação da compra com redirecionamento para o WhatsApp.
 
 ---
 
-**Ronald Machado | Projeto Banco de Dados | Professor Anderson Soares | 2026**
+**Ronald Machado — Projeto Banco de Dados — 2026**
