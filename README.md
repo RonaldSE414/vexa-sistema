@@ -167,13 +167,6 @@ Modo integrado ativado.
 .\.venv\Scripts\python.exe -c "from app import app; app.run(host='127.0.0.1', port=5001, debug=False)"
 ```
 
-Após iniciar a aplicação, acesse:
-
-- **Loja:** http://127.0.0.1:5001
-- **Administrador:** http://127.0.0.1:5001/admin/login
-- **Cadastro de clientes:** http://127.0.0.1:5001/cliente/cadastro
-
-As credenciais devem permanecer no arquivo `.env`, que não deve ser enviado ao repositório.
 
 ## Vídeo de demonstração
 
