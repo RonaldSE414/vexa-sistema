@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="#d8eeff" name="theme-color"/>
+<meta content="Vexa — estilo, tendências e escolhas para todos os dias." name="description"/>
+<title>Vexa — Sua vitrine de estilo</title>
+<link href="static/img/favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href="static/css/style.css" rel="stylesheet"/>
+</head>
+<body><div style="background:#143b59;color:white;text-align:center;padding:9px;font:600 12px system-ui;position:relative;z-index:60">PRÉVIA VISUAL OFFLINE • Dados ilustrativos, sem conexão com bancos</div>
+<div class="topbar"><span>VEXA STORE</span><span>Escolhas com personalidade • Explore nossa seleção</span><span>✦ DESCOBRIR</span></div>
+<header class="site-header">
+<div class="container header-inner">
+<a aria-label="Vexa, início" class="brand" href="#inicio"><img alt="Logo Vexa" src="static/img/logo-vexa.png"/></a>
+<nav aria-label="Menu principal" class="nav-main"><a href="#inicio">Início</a><a href="#catalogo">Produtos</a><a href="#categorias">Categorias</a><a href="#sobre">Sobre a Vexa</a></nav>
+<div class="header-actions">
+<button aria-label="Pesquisar produtos" class="icon-button search-shortcut" id="goSearch" type="button"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.8"></circle><path d="m16 16 5 5"></path></svg></button>
+<a aria-label="Área administrativa" class="icon-button admin-shortcut" href="previa-admin.html" title="Área administrativa"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24"><circle cx="12" cy="8" r="3.7"></circle><path d="M4.8 20a7.2 7.2 0 0 1 14.4 0"></path></svg></a>
+<button aria-label="Abrir carrinho" class="cart-icon" id="cartOpen" type="button"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24"><path d="M3 4h2l2.1 11.2a2 2 0 0 0 2 1.6h9.3a2 2 0 0 0 1.9-1.5L22 8H6"></path><circle cx="10" cy="21" r="1"></circle><circle cx="19" cy="21" r="1"></circle></svg><span class="cart-count" id="cartCount">0</span></button>
+</div>
+</div>
+</header>
+<main>
+<section class="hero" id="inicio">
+<div class="container hero-inner">
+<div class="hero-copy">
+<div class="eyebrow"><span class="eyebrow-dot"></span> SUA NOVA LOJA FAVORITA</div>
+<h1>Seu estilo.<br/>Suas escolhas.<br/><em>Sua Vexa.</em></h1>
+<p>Do essencial ao inesperado. Descubra uma seleção feita para acompanhar o seu jeito de ser.</p>
+<div class="hero-buttons"><a class="btn btn-primary" href="#catalogo">Explorar produtos <span aria-hidden="true">↗</span></a><a class="btn btn-ghost" href="#categorias">Ver categorias <span aria-hidden="true">→</span></a></div>
+<div class="hero-meta"><span class="tiny-stars">✦ ✦ ✦</span><span>14 produtos para descobrir</span><span class="meta-sep">•</span><span>Uma loja, muitos estilos</span></div>
+</div>
+<div aria-label="Seleção de produtos Vexa" class="hero-visual">
+<div class="hero-ring ring-1"></div><div class="hero-ring ring-2"></div>
+<span class="hero-mini-tag">ESSENCIAIS &amp; ACHADOS</span>
+<div class="hero-img hero-img-main"><img alt="Bolsa verde oliva" loading="eager" src="static/img/produtos/IMG_9972.webp"/></div>
+<div class="hero-img hero-img-small top"><img alt="Tênis claro" src="static/img/produtos/IMG_9970.webp"/></div>
+<div class="hero-img hero-img-small bottom"><img alt="Relógio verde" src="static/img/produtos/IMG_9966.webp"/></div>
+<div class="floating-note"><span>✦</span><div><strong>Curadoria Vexa</strong><small>Peças que chamam atenção</small></div></div>
+<span class="hero-bg-word">VEXA</span>
+</div>
+</div>
+</section>
+<section class="benefit-band"><div class="container band-inner"><span><b>✧</b> Escolhas para todos os estilos</span><span class="band-dot">✦</span><span><b>◎</b> Produtos em várias categorias</span><span class="band-dot">✦</span><span><b>♡</b> Seu carrinho, do seu jeito</span></div></section>
+<section class="section categories-section" id="categorias">
+<div class="container">
+<div class="section-heading"><div><p class="section-kicker">EXPLORE A VEXA</p><h2>Cada escolha conta<br/><em>uma história.</em></h2></div><p>Encontre aquele detalhe que combina com você, seja qual for o seu estilo.</p></div>
+<div class="category-tiles">
+<button class="category-tile cat-bolsas" data-cat="Bolsas"><img alt="Mochila verde água" src="static/img/produtos/IMG_9978.webp"/><div><span>01 / COMBINE</span><strong>Bolsas</strong><small>Explorar ↗</small></div></button>
+<button class="category-tile cat-moda" data-cat="Moda"><img alt="Camiseta preta" src="static/img/produtos/IMG_9975.webp"/><div><span>02 / EXPRESSE</span><strong>Moda</strong><small>Explorar ↗</small></div></button>
+<button class="category-tile cat-acessorios" data-cat="Acessórios"><img alt="Relógio prateado" src="static/img/produtos/IMG_9966.webp"/><div><span>03 / DESTAQUE</span><strong>Acessórios</strong><small>Explorar ↗</small></div></button>
+</div>
+</div>
+</section>
+<section class="section products-section" id="catalogo">
+<div class="container">
+<div class="catalog-head"><div><p class="section-kicker">GARIMPE SEUS FAVORITOS</p><h2>Descubra a <em>coleção.</em></h2></div><div class="catalog-side"><span id="resultsCount">14 produtos</span><span class="catalog-line"></span><span>VEXA EDITION</span></div></div>
+<div class="catalog-toolbar"><div class="filters" id="filters"><button class="filter-chip active" data-cat="Todos" type="button">Todos</button><button class="filter-chip" data-cat="Moda" type="button">Moda</button><button class="filter-chip" data-cat="Bolsas" type="button">Bolsas</button><button class="filter-chip" data-cat="Acessórios" type="button">Acessórios</button><button class="filter-chip" data-cat="Calçados" type="button">Calçados</button><button class="filter-chip" data-cat="Beleza" type="button">Beleza</button><button class="filter-chip" data-cat="Tecnologia" type="button">Tecnologia</button></div><div class="search-wrap"><svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><circle cx="10" cy="10" r="6.5"></circle><path d="m15 15 6 6"></path></svg><input aria-label="Buscar produto" id="searchInput" maxlength="100" placeholder="Buscar produto..."/></div></div>
+<div aria-live="polite" class="product-grid" id="productGrid"><p class="loading-text">Carregando a coleção...</p></div>
+<p class="error-text" hidden="" id="catalogError"></p>
+<p class="demo-disclaimer">Modo demonstração: produtos e preços são ilustrativos. Para usar os bancos reais, configure o arquivo <code>.env</code> e desative <code>DEMO_MODE</code>.</p>
+</div>
+</section>
+<section class="section recently-section" hidden="" id="recentSection"><div class="container"><div class="section-heading recent-heading"><div><p class="section-kicker">VOCÊ PASSOU POR AQUI</p><h2>Vistos <em>recentemente.</em></h2></div><p id="recentExplainer">Encontre de novo os produtos que despertaram seu interesse.</p></div><div class="recent-grid" id="recentGrid"></div></div></section>
+<section class="brand-banner" id="sobre"><div class="container banner-inner"><div class="brand-symbol">V<span>✦</span></div><div><p>MAIS DO QUE PRODUTOS</p><h2>Seu mundo tem <em>muitas versões.</em><br/>Explore todas elas.</h2><span>Vexa. Descubra. Escolha. Combine.</span></div><a class="btn btn-white" href="#catalogo">Voltar à coleção ↗</a></div></section>
+</main>
+<footer class="footer"><div class="container footer-top"><div><img alt="Vexa" class="footer-logo" src="static/img/logo-vexa.png"/><p>Uma vitrine para o seu estilo.<br/>Do seu jeito, todos os dias.</p></div><div><strong>Explore</strong><a href="#inicio">Início</a><a href="#catalogo">Produtos</a><a href="#categorias">Categorias</a></div><div><strong>Área da loja</strong><a href="previa-admin.html">Painel administrativo</a><a href="previa-admin.html">Prévia do painel</a></div></div><div class="container footer-bottom"><small>© 2026 Vexa • Projeto acadêmico de e-commerce</small><small>Feito para você descobrir mais ✦</small></div></footer>
+<div class="screen-shade" hidden="" id="screenShade"></div>
+<aside aria-label="Seu carrinho" aria-modal="true" class="cart-drawer" hidden="" id="cartDrawer" role="dialog"><div class="drawer-head"><div><small>SUA SELEÇÃO</small><h2>Meu carrinho <span>🛍</span></h2></div><button aria-label="Fechar carrinho" class="close-btn" id="cartClose">✕</button></div><div class="drawer-body" id="cartItems"></div><div class="drawer-foot"><div class="cart-total"><span>Total estimado</span><strong id="cartTotal">R$ 0,00</strong></div><p>O pedido será enviado pelo WhatsApp. Não há pagamento neste site.</p><button class="btn btn-primary checkout-btn" id="checkoutBtn" type="button">Enviar pedido pelo WhatsApp <span>↗</span></button></div></aside>
+<div aria-label="Detalhes do produto" aria-modal="true" class="product-modal" hidden="" id="productModal" role="dialog"><button aria-label="Fechar detalhes" class="close-btn modal-close" id="modalClose">✕</button><div id="modalContent"></div></div>
+<div aria-live="polite" class="toast" id="toast" role="status"></div>
+<script>window.VEXA_CONFIG = { demo: true, whatsapp: "" };</script>
+<script>
+// Prévia offline: apenas simula a API. NÃO é integração com MongoDB/Redis/Supabase.
+window.VEXA_PREVIEW_PRODUCTS = [{"sku":"VEX-001","nome":"Fone de ouvido com fio","categoria":"Tecnologia","preco_centavos":4990,"imagem":"IMG_9964.webp","descricao":"Fone de ouvido branco com fio, encaixe tradicional e conexão P2 de 3,5 mm. O cabo possui controle integrado, uma opção prática para ouvir músicas, acompanhar vídeos e realizar atividades do dia a dia.","destaque":true,"imagem_url":"static/img/produtos/IMG_9964.webp"},{"sku":"VEX-002","nome":"Relógio com mostrador verde","categoria":"Acessórios","preco_centavos":29990,"imagem":"IMG_9966.webp","descricao":"Relógio Casio com mostrador verde e pulseira metálica prateada. O contraste entre o verde intenso e os detalhes em aço cria um visual clássico, ideal para complementar produções casuais ou mais arrumadas.","destaque":true,"imagem_url":"static/img/produtos/IMG_9966.webp"},{"sku":"VEX-003","nome":"Calça jeans azul","categoria":"Moda","preco_centavos":16990,"imagem":"IMG_9967.webp","descricao":"Calça jeans em lavagem azul média com áreas levemente desbotadas e modelagem de pernas amplas. Uma peça versátil para combinar com camisetas, camisas e tênis em looks de diferentes estilos.","destaque":false,"imagem_url":"static/img/produtos/IMG_9967.webp"},{"sku":"VEX-004","nome":"Perfume Bossa","categoria":"Beleza","preco_centavos":18990,"imagem":"IMG_9969.webp","descricao":"Perfume Bossa apresentado em frasco transparente com detalhes dourados e rótulo ilustrado em tons de azul. A embalagem combina elegância e leveza, sendo uma boa escolha para quem aprecia frascos de perfume com identidade visual marcante.","destaque":false,"imagem_url":"static/img/produtos/IMG_9969.webp"},{"sku":"VEX-005","nome":"Pulseira prateada","categoria":"Acessórios","preco_centavos":8990,"imagem":"IMG_9968.webp","descricao":"Pulseira rígida prateada com detalhe central escuro e acabamento com pequenos elementos brilhantes. O desenho delicado permite usá-la sozinha ou combinada com outros acessórios.","destaque":false,"imagem_url":"static/img/produtos/IMG_9968.webp"},{"sku":"VEX-006","nome":"Tênis Samba claro","categoria":"Calçados","preco_centavos":44990,"imagem":"IMG_9970.webp","descricao":"Tênis de estilo Samba em tom creme, com listras escuras nas laterais e solado caramelo. O perfil baixo e a combinação de cores neutras tornam o modelo fácil de combinar com jeans, calças de alfaiataria e peças casuais.","destaque":true,"imagem_url":"static/img/produtos/IMG_9970.webp"},{"sku":"VEX-007","nome":"Loção corporal vermelha","categoria":"Beleza","preco_centavos":23990,"imagem":"IMG_9971.webp","descricao":"Loção corporal Eau de Rhubarbe Écarlate em frasco vermelho com válvula dosadora preta. A apresentação elegante e a embalagem de linhas retas trazem um toque sofisticado à rotina de cuidados pessoais.","destaque":false,"imagem_url":"static/img/produtos/IMG_9971.webp"},{"sku":"VEX-008","nome":"Bolsa verde oliva","categoria":"Bolsas","preco_centavos":32990,"imagem":"IMG_9972.webp","descricao":"Bolsa de mão verde-oliva com formato estruturado, alça superior e detalhe metálico frontal. O tom terroso funciona como ponto de cor discreto em produções para o dia ou para a noite.","destaque":true,"imagem_url":"static/img/produtos/IMG_9972.webp"},{"sku":"VEX-009","nome":"Bolsa jeans e couro","categoria":"Bolsas","preco_centavos":45990,"imagem":"IMG_9973.webp","descricao":"Bolsa compacta com corpo em jeans azul, alças escuras e detalhes em tom marrom. O contraste de materiais cria um visual moderno e marcante para acompanhar diferentes combinações de roupa.","destaque":false,"imagem_url":"static/img/produtos/IMG_9973.webp"},{"sku":"VEX-010","nome":"Óculos tartaruga","categoria":"Acessórios","preco_centavos":14990,"imagem":"IMG_9974.webp","descricao":"Armação de óculos retangular em tons de marrom com efeito tartaruga. Seu formato geométrico dá personalidade ao visual e combina com looks clássicos e contemporâneos. Lentes de demonstração na imagem.","destaque":false,"imagem_url":"static/img/produtos/IMG_9974.webp"},{"sku":"VEX-011","nome":"Camiseta preta cerejas","categoria":"Moda","preco_centavos":7990,"imagem":"IMG_9975.webp","descricao":"Camiseta preta de modelagem ampla com estampa frontal de cerejas vermelhas e lettering em tons claros. Uma peça descontraída para looks urbanos, especialmente com jeans, shorts ou saias.","destaque":false,"imagem_url":"static/img/produtos/IMG_9975.webp"},{"sku":"VEX-012","nome":"Camiseta vermelha estampada","categoria":"Moda","preco_centavos":7990,"imagem":"IMG_9976.webp","descricao":"Camiseta vermelha de manga curta com estampa central de peixe em contraste. O desenho chama atenção e adiciona um toque criativo às produções casuais.","destaque":false,"imagem_url":"static/img/produtos/IMG_9976.webp"},{"sku":"VEX-013","nome":"Bolsa esportiva azul-marinho","categoria":"Bolsas","preco_centavos":27990,"imagem":"IMG_9977.webp","descricao":"Bolsa esportiva azul-marinho com alças superiores e bolso externo com zíper. O formato compacto e funcional é uma alternativa para levar objetos pessoais na rotina ou em passeios.","destaque":false,"imagem_url":"static/img/produtos/IMG_9977.webp"},{"sku":"VEX-014","nome":"Mochila verde água","categoria":"Bolsas","preco_centavos":31990,"imagem":"IMG_9978.webp","descricao":"Mochila verde-água com compartimento principal, bolsos frontais e puxadores de zíper aparentes. A organização externa e a cor suave fazem dela uma opção prática e estilosa para o cotidiano.","destaque":true,"imagem_url":"static/img/produtos/IMG_9978.webp"}];
+window.fetch = async function(url) {
+ const path = String(url);
+ const products = window.VEXA_PREVIEW_PRODUCTS;
+ let body = {};
+ let status = 200;
+ if(path === '/api/products') body={produtos:products,total:products.length,demo:true};
+ else if(path.startsWith('/api/products/')) {
+   let p=products.find(x=>x.sku===decodeURIComponent(path.split('/').pop()));
+   if(p) body={produto:p,demo:true}; else {status=404;body={erro:'Produto não encontrado.'};}
+ } else if(path === '/api/recent') body={produtos:[],demo:true};
+ else {status=404;body={erro:'Endpoint não disponível na prévia offline.'};}
+ return {ok:status<400,status,json:async()=>body};
+};
+</script><script defer="" src="static/js/app.js"></script>
+</body>
+</html>
