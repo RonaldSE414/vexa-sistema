@@ -8,50 +8,77 @@
 
 ## Sobre o projeto
 
-A Vexa Store é um sistema de e-commerce desenvolvido em Python com Flask, utilizando o conceito de Banco de Dados Poliglota. O projeto integra Supabase, MongoDB Atlas e Redis Cloud, distribuindo as responsabilidades de armazenamento conforme as funcionalidades da aplicação.
+A Vexa Store é um sistema de e-commerce desenvolvido em Python com Flask, utilizando o conceito de Banco de Dados Poliglota. O projeto integra Supabase, MongoDB Atlas e Redis Cloud, distribuindo as responsabilidades de armazenamento de acordo com as necessidades de cada funcionalidade.
 
-O sistema conta com catálogo de produtos, painel administrativo, carrinho de compras, cadastro de clientes e preparação de pedidos para o WhatsApp.
+O sistema possui catálogo de produtos, painel administrativo, carrinho de compras, cadastro de clientes e integração com o WhatsApp para preparação de pedidos.
 
 A interface foi desenvolvida com HTML, CSS e JavaScript, seguindo uma identidade visual em azul e branco. O logotipo da Vexa foi criado manualmente no Canva.
 
 <p align="center">
-  <img src="docs/imagens/01-pagina-inicial.png" width="900" alt="Página inicial da Vexa">
+  <img src="docs/imagens/01-pagina-inicial.png" width="850" alt="Página inicial da Vexa">
 </p>
 
-## Tecnologias e bancos de dados
+## Tecnologias utilizadas
 
 | Tecnologia | Utilização |
 |---|---|
-| Python e Flask | Backend e funcionamento da aplicação |
+| Python e Flask | Desenvolvimento do backend e das rotas da aplicação |
 | HTML, CSS e JavaScript | Interface web e interatividade |
 | Supabase Auth | Autenticação do administrador e dos clientes |
-| PostgreSQL (Supabase) | Armazenamento de perfis e pedidos preparados |
-| MongoDB Atlas | Cadastro, consulta, edição e exclusão de produtos |
-| Redis Cloud | Cache dos produtos visualizados e sessões temporárias |
+| PostgreSQL (Supabase) | Armazenamento dos perfis e pedidos preparados |
+| MongoDB Atlas | Cadastro e gerenciamento dos produtos |
+| Redis Cloud | Cache de visualizações recentes e sessões temporárias |
+| PyMongo e redis-py | Integração com MongoDB e Redis |
+| Requests, Pillow e python-dotenv | Requisições, tratamento de imagens e configurações |
 | WhatsApp | Redirecionamento com mensagem do pedido |
 | Canva | Criação manual do logotipo |
 
-### Organização dos dados
+## Organização dos bancos de dados
 
-**Supabase:** responsável pela autenticação e pelas informações relacionadas aos clientes. Além da estrutura `auth.users`, foram criadas as tabelas `vexa_clientes` e `vexa_pedidos`, com relacionamentos e políticas de segurança RLS.
+O projeto utiliza três bancos com responsabilidades diferentes, evitando concentrar todas as informações em uma única tecnologia.
 
-O código SQL utilizado está disponível em [SUPABASE_CLIENTES.sql](SUPABASE_CLIENTES.sql).
+**Supabase (PostgreSQL)**
 
-**MongoDB Atlas:** utilizado para armazenar os produtos no banco `vexa_store`, coleção `produtos`. Cada produto possui informações como código, nome, categoria, descrição, preço, imagem e destaque.
+Utilizado para autenticação do administrador e dos clientes, além do armazenamento de perfis e pedidos preparados.
 
-**Redis Cloud:** responsável pelo armazenamento temporário dos produtos visualizados recentemente, além de auxiliar no gerenciamento das sessões de clientes.
+A autenticação é realizada pelo Supabase Auth, enquanto o PostgreSQL armazena as informações nas tabelas:
+
+- `auth.users`: usuários autenticados, gerenciados pelo Supabase.
+- `vexa_clientes`: identificação e nome dos clientes.
+- `vexa_pedidos`: produtos, valores, status e data dos pedidos preparados.
+
+As tabelas possuem relacionamentos com os usuários autenticados e políticas de segurança Row Level Security (RLS), restringindo o acesso aos dados de cada cliente.
+
+O script SQL utilizado está disponível no arquivo [SUPABASE_CLIENTES.sql](SUPABASE_CLIENTES.sql).
+
+**MongoDB Atlas**
+
+Responsável pelo armazenamento do catálogo no banco `vexa_store`, coleção `produtos`.
+
+Os documentos armazenam informações como código (SKU), nome, categoria, descrição, preço, imagem e destaque. A estrutura permite cadastrar produtos de diferentes categorias e realizar operações de criação, consulta, edição e exclusão pelo painel administrativo.
+
+**Redis Cloud**
+
+Utilizado para armazenar temporariamente os produtos visualizados recentemente pelos visitantes da loja. Também é utilizado no gerenciamento de sessões de clientes, permitindo acesso rápido a informações temporárias.
+
+O Redis complementa os bancos de dados principais, sem substituir o armazenamento permanente dos produtos e pedidos.
 
 ## Funcionalidades do sistema
 
-A loja permite visualizar os produtos disponíveis, pesquisar itens, navegar por categorias e adicionar produtos ao carrinho. O usuário pode alterar as quantidades, remover itens e consultar o valor total da compra.
+### Loja e carrinho de compras
 
-A finalização gera uma mensagem com os produtos selecionados, suas quantidades e o valor total, redirecionando o usuário para o WhatsApp. O sistema não realiza pagamentos diretamente.
+A loja permite visualizar os produtos disponíveis, pesquisar itens pelo nome, navegar por categorias e consultar informações detalhadas dos produtos.
 
-### Catálogo e carrinho
+O carrinho permite adicionar e remover itens, alterar quantidades e calcular automaticamente o valor total.
+
+Na finalização, o sistema gera uma mensagem contendo os produtos selecionados, as quantidades e o total, redirecionando o usuário para o WhatsApp. Não há processamento de pagamentos diretamente na aplicação.
 
 <p align="center">
-  <img src="docs/imagens/02-categorias.png" width="48%" alt="Categorias">
-  <img src="docs/imagens/03-catalogo.png" width="48%" alt="Catálogo">
+  <img src="docs/imagens/02-categorias.png" width="850" alt="Categorias de produtos">
+</p>
+
+<p align="center">
+  <img src="docs/imagens/03-catalogo.png" width="850" alt="Catálogo de produtos">
 </p>
 
 <p align="center">
@@ -60,31 +87,46 @@ A finalização gera uma mensagem com os produtos selecionados, suas quantidades
 
 ### Cadastro e acesso dos clientes
 
-Foi implementada uma área de clientes integrada ao Supabase, permitindo criar uma conta, realizar login, atualizar o nome e consultar o histórico dos pedidos preparados.
+Foi implementada uma área de clientes integrada ao Supabase Auth. O usuário pode criar uma conta, realizar login, atualizar o nome cadastrado e consultar o histórico dos pedidos preparados.
+
+Os registros dos pedidos são armazenados no PostgreSQL, permitindo associá-los ao cliente autenticado.
 
 <p align="center">
-  <img src="docs/imagens/05-login-cliente.png" width="48%" alt="Login do cliente">
-  <img src="docs/imagens/06-minha-conta.png" width="48%" alt="Área do cliente">
+  <img src="docs/imagens/05-login-cliente.png" width="850" alt="Tela de login do cliente">
 </p>
 
-### Administração
+<p align="center">
+  <img src="docs/imagens/06-minha-conta.png" width="850" alt="Perfil e histórico de pedidos">
+</p>
 
-O painel administrativo possui autenticação restrita pelo Supabase e permite gerenciar os produtos armazenados no MongoDB.
+### Painel administrativo
 
-O administrador pode cadastrar, editar, consultar e excluir produtos, além de visualizar informações gerais do catálogo. Os produtos cadastrados ficam disponíveis na vitrine da loja.
+O administrador possui uma área restrita, com autenticação realizada pelo Supabase e verificação de acesso autorizado.
+
+No painel, é possível visualizar informações do catálogo e gerenciar os produtos armazenados no MongoDB.
+
+O formulário de cadastro permite informar nome, código, categoria, descrição, preço, imagem e destaque. Também são disponibilizadas as opções de edição e exclusão.
+
+Após cadastrar um produto, ele pode ser consultado na listagem do administrador e no catálogo público da loja.
 
 <p align="center">
   <img src="docs/imagens/12-login-administrador.png" width="850" alt="Login administrativo">
 </p>
 
 <p align="center">
-  <img src="docs/imagens/07-painel-admin.png" width="48%" alt="Painel administrativo">
-  <img src="docs/imagens/08-listagem-admin.png" width="48%" alt="Lista de produtos">
+  <img src="docs/imagens/07-painel-admin.png" width="850" alt="Painel administrativo">
 </p>
 
 <p align="center">
-  <img src="docs/imagens/09-cadastro-produto.png" width="48%" alt="Cadastro de produto">
-  <img src="docs/imagens/11-editar-produto.png" width="48%" alt="Edição de produto">
+  <img src="docs/imagens/08-listagem-admin.png" width="850" alt="Gerenciamento de produtos">
+</p>
+
+<p align="center">
+  <img src="docs/imagens/09-cadastro-produto.png" width="850" alt="Cadastro de novo produto">
+</p>
+
+<p align="center">
+  <img src="docs/imagens/11-editar-produto.png" width="850" alt="Edição de produto">
 </p>
 
 ## Estrutura do projeto
@@ -100,22 +142,35 @@ vexa-sistema/
 ├── SUPABASE_CLIENTES.sql
 ├── requirements.txt
 ├── .env.example
+├── .gitignore
 ├── iniciar_windows.bat
 ├── templates/
+│   ├── index.html
+│   ├── login.html
+│   ├── admin.html
+│   ├── cliente_auth.html
+│   └── cliente_conta.html
 ├── static/
+│   ├── css/
+│   ├── js/
+│   ├── img/
+│   └── uploads/
 ├── data/
+│   └── produtos_demo.json
 ├── docs/
 │   └── imagens/
 └── README.md
 ```
 
-O `app.py` concentra a aplicação Flask e as rotas principais. O `clientes.py` implementa as funcionalidades de autenticação e gerenciamento dos clientes. O `seed.py` permite carregar os produtos iniciais no MongoDB.
+O `app.py` contém as rotas e funcionalidades principais da aplicação Flask. O `clientes.py` reúne os recursos de autenticação e gerenciamento das contas dos clientes.
 
-As páginas HTML estão em `templates`, enquanto os arquivos CSS, JavaScript e as imagens utilizadas pela loja estão em `static`. A pasta `data` contém os dados de demonstração.
+O `seed.py` realiza a carga inicial dos produtos no MongoDB. Os arquivos `verificar_conexoes.py` e `verificar_historico.py` permitem verificar os serviços e consultar os dados temporários do Redis.
+
+Os arquivos HTML estão organizados em `templates`, enquanto os estilos, scripts e imagens utilizados pela interface estão em `static`.
 
 ## Configuração e execução
 
-O projeto foi desenvolvido em ambiente Windows, utilizando Python 3.11 e Visual Studio Code.
+O sistema foi desenvolvido em ambiente Windows, utilizando Python 3.11 e Visual Studio Code.
 
 **1. Instalar as dependências**
 
@@ -126,27 +181,34 @@ python -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
 ```
 
-**2. Configurar os bancos de dados**
+**2. Configurar as conexões**
 
-Crie o arquivo `.env` com base no `.env.example` e preencha as credenciais do Supabase, MongoDB Atlas e Redis Cloud, além do número de WhatsApp da loja.
+Crie um arquivo `.env` com base no `.env.example` e informe:
 
-Configure `DEMO_MODE=false` para utilizar as conexões reais.
+- URL de conexão do MongoDB Atlas.
+- URL de conexão do Redis Cloud.
+- URL e chave pública do Supabase.
+- E-mail autorizado para administração.
+- Número de WhatsApp da loja.
+- Chave secreta do Flask.
 
-No Supabase, execute o arquivo `SUPABASE_CLIENTES.sql` pelo SQL Editor para criar as tabelas e as políticas de acesso, caso ainda não estejam configuradas.
+Para utilizar os bancos reais, configure `DEMO_MODE=false`.
 
-Para carregar os produtos iniciais no MongoDB, utilize:
+No Supabase, execute o arquivo `SUPABASE_CLIENTES.sql` pelo SQL Editor para criar as tabelas e as políticas de segurança, caso ainda não estejam configuradas.
+
+Para carregar os produtos iniciais no MongoDB, se necessário:
 
 ```powershell
 .\.venv\Scripts\python.exe seed.py
 ```
 
-**3. Verificar as conexões**
+**3. Verificar as conexões dos bancos**
 
 ```powershell
 .\.venv\Scripts\python.exe verificar_conexoes.py
 ```
 
-Durante os testes, os três serviços responderam corretamente:
+Durante os testes realizados, os três serviços responderam corretamente:
 
 ```text
 [OK] MongoDB - Conectado
@@ -158,7 +220,7 @@ Modo integrado ativado.
 ```
 
 <p align="center">
-  <img src="docs/imagens/10-conexoes.png" width="850" alt="Diagnóstico das conexões">
+  <img src="docs/imagens/10-conexoes.png" width="850" alt="Verificação das conexões dos bancos">
 </p>
 
 **4. Iniciar o sistema**
@@ -167,15 +229,23 @@ Modo integrado ativado.
 .\.venv\Scripts\python.exe -c "from app import app; app.run(host='127.0.0.1', port=5001, debug=False)"
 ```
 
+Após iniciar o servidor, acesse:
+
+| Página | Endereço |
+|---|---|
+| Loja | http://127.0.0.1:5001 |
+| Administração | http://127.0.0.1:5001/admin/login |
+| Cadastro de clientes | http://127.0.0.1:5001/cliente/cadastro |
+| Login de clientes | http://127.0.0.1:5001/cliente/login |
+
+O arquivo `.env` contém credenciais privadas e não deve ser publicado no GitHub.
 
 ## Vídeo de demonstração
 
-**Vídeo da 3ª Avaliação:**
+**[Assistir ao vídeo de demonstração da Vexa](https://drive.google.com/file/d/10MB6k9dIEQ6-mY4GZRyoOa6r_H3iUkx4/view?usp=sharing)**
 
-[[link do vídeo](https://drive.google.com/file/d/10MB6k9dIEQ6-mY4GZRyoOa6r_H3iUkx4/view?usp=sharing)]
-
-A demonstração apresenta o login do administrador, o cadastro de um novo produto com atualização no catálogo e a simulação da compra com redirecionamento para o WhatsApp.
+O vídeo apresenta a execução do sistema, incluindo o login do administrador, o cadastro de um produto com atualização no catálogo e a simulação de compra com redirecionamento e mensagem formatada para o WhatsApp.
 
 ---
 
-**Ronald Machado — Projeto Banco de Dados — 2026**
+**Ronald Machado — Projeto Banco de Dados — Professor Anderson Soares — 2026**
