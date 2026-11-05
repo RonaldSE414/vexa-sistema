@@ -1,0 +1,130 @@
+
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Entrar • Vexa Admin</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body class="login-page">
+
+<main class="login-shell">
+
+    <!-- LADO ESQUERDO -->
+    <div class="login-showcase">
+
+        <a href="/" class="login-back">← Voltar à loja</a>
+
+        
+<div class="login-decoration">
+    <span class="dec-circle"></span>
+
+    <img
+        class="login-brand-art"
+        src="{{ url_for('static', filename='img/vexa-azul-branca.png') }}"
+        alt="Logo azul e branca da Vexa"
+    >
+</div>
+
+
+        <div class="login-quote">
+            <span>✧ ÁREA EXCLUSIVA</span>
+
+            <h1>
+                Organize a loja.<br>
+                <em>Inspire escolhas.</em>
+            </h1>
+
+            <p>
+                Seu espaço para gerenciar os produtos da Vexa com facilidade.
+            </p>
+        </div>
+
+    </div>
+
+    <!-- LADO DIREITO -->
+    <div class="login-content">
+
+        <div class="login-formwrap">
+
+            <img
+                class="login-logo"
+                src="{{ url_for('static', filename='img/logo-vexa.png') }}"
+                alt="Vexa"
+            >
+
+            <p class="section-kicker">PAINEL ADMINISTRATIVO</p>
+
+            <h2>Bem-vindo de volta.</h2>
+
+            <p class="login-subtitle">
+                Entre com suas credenciais de administrador cadastradas no Supabase.
+            </p>
+
+            {% if error %}
+            <div class="form-error" role="alert">
+                {{ error }}
+            </div>
+            {% endif %}
+
+            {% if demo_mode %}
+            <div class="demo-alert">
+                Você está no modo demonstração.
+                O login real ficará disponível depois da configuração do Supabase.
+            </div>
+            {% endif %}
+
+            <form method="post" class="login-form">
+
+                <input
+                    type="hidden"
+                    name="csrf_token"
+                    value="{{ csrf }}"
+                >
+
+                <label for="email">E-mail</label>
+
+                <input
+                    type="email"
+                    name="email"
+                    id="email"
+                    autocomplete="username"
+                    placeholder="admin@exemplo.com"
+                    required
+                >
+
+                <label for="password">Senha</label>
+
+                <input
+                    type="password"
+                    name="password"
+                    id="password"
+                    autocomplete="current-password"
+                    placeholder="Sua senha"
+                    required
+                >
+
+                <button class="btn btn-primary" type="submit">
+                    Entrar no painel <span>↗</span>
+                </button>
+
+            </form>
+
+            <a class="preview-link" href="/admin/preview">
+                Visualizar prévia do painel (sem login) →
+            </a>
+
+            <p class="login-note">
+                Acesso restrito aos administradores definidos no sistema.
+            </p>
+
+        </div>
+
+    </div>
+
+</main>
+
+</body>
+</html>

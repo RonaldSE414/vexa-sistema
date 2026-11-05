@@ -1,0 +1,167 @@
+
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1">
+
+    <title>{{ titulo }} • Vexa</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/cliente.css') }}">
+</head>
+
+<body class="account-page">
+
+    <header class="account-header">
+
+        <a class="account-logo" href="/">
+            <img
+                src="{{ url_for('static', filename='img/logo-vexa.png') }}"
+                alt="Vexa">
+        </a>
+
+        <a class="account-back" href="/">
+            ← Voltar à loja
+        </a>
+
+    </header>
+
+    <main class="account-main">
+
+        <div class="account-promo">
+
+            <span class="kicker">✦ CLUBE VEXA</span>
+
+            <h1>
+                Seu estilo tem<br>
+                <em>seu espaço.</em>
+            </h1>
+
+            <p>
+                Crie sua conta para guardar seus dados
+                e consultar os pedidos preparados
+                para o WhatsApp.
+            </p>
+
+            <img
+                src="{{ url_for('static', filename='img/vexa-azul-branca.png') }}"
+                alt="Arte da Vexa">
+
+        </div>
+
+        <section class="account-card">
+
+            <p class="kicker">
+                {{ 'CADASTRO DE CLIENTE' if registro
+                   else 'ACESSO DO CLIENTE' }}
+            </p>
+
+            <h2>
+                {{ 'Crie sua conta' if registro
+                   else 'Bem-vindo(a) de volta' }}
+            </h2>
+
+            <p class="card-subtitle">
+                {{ 'Um espaço exclusivo para acompanhar suas escolhas.'
+                   if registro
+                   else 'Entre com o e-mail e a senha cadastrados.' }}
+            </p>
+
+            {% if erro %}
+            <div class="alert error" role="alert">
+                {{ erro }}
+            </div>
+            {% endif %}
+
+            {% if cadastrado %}
+            <div class="alert success">
+                Cadastro recebido!
+                Se o Supabase enviou um e-mail de confirmação,
+                confirme-o antes de entrar.
+            </div>
+            {% endif %}
+
+            <form method="post" class="account-form">
+
+                <input
+                    type="hidden"
+                    name="csrf_token"
+                    value="{{ csrf }}">
+
+                {% if registro %}
+
+                <label for="nome">Seu nome</label>
+
+                <input
+                    id="nome"
+                    name="nome"
+                    minlength="2"
+                    maxlength="100"
+                    placeholder="Como deseja ser chamado(a)?"
+                    autocomplete="name"
+                    required>
+
+                {% endif %}
+
+                <label for="email">E-mail</label>
+
+                <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    placeholder="cliente@exemplo.com"
+                    autocomplete="email"
+                    required>
+
+                <label for="senha">Senha</label>
+
+                <input
+                    id="senha"
+                    name="senha"
+                    type="password"
+                    minlength="8"
+                    placeholder="Pelo menos 8 caracteres"
+                    autocomplete="{{ 'new-password' if registro else 'current-password' }}"
+                    required>
+
+                <button class="primary" type="submit">
+                    {{ 'Criar minha conta' if registro
+                       else 'Entrar na minha conta' }} ↗
+                </button>
+
+            </form>
+
+            <p class="switch-auth">
+
+                {% if registro %}
+
+                    Já tem uma conta?
+                    <a href="/cliente/login">
+                        Fazer login
+                    </a>
+
+                {% else %}
+
+                    Ainda não tem conta?
+                    <a href="/cliente/cadastro">
+                        Cadastre-se
+                    </a>
+
+                {% endif %}
+
+            </p>
+
+            <p class="account-note">
+                O acesso administrativo continua separado,
+                em <a href="/admin/login">Painel Admin</a>.
+            </p>
+
+        </section>
+
+    </main>
+
+</body>
+</html>

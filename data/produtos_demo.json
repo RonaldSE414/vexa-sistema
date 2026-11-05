@@ -1,0 +1,128 @@
+[
+  {
+    "sku": "VEX-001",
+    "nome": "Fone de ouvido com fio",
+    "categoria": "Tecnologia",
+    "preco_centavos": 4990,
+    "imagem": "IMG_9964.webp",
+    "descricao": "Fone de ouvido branco com fio, encaixe tradicional e conexão P2 de 3,5 mm. O cabo possui controle integrado, uma opção prática para ouvir músicas, acompanhar vídeos e realizar atividades do dia a dia.",
+    "destaque": true
+  },
+  {
+    "sku": "VEX-002",
+    "nome": "Relógio com mostrador verde",
+    "categoria": "Acessórios",
+    "preco_centavos": 29990,
+    "imagem": "IMG_9966.webp",
+    "descricao": "Relógio Casio com mostrador verde e pulseira metálica prateada. O contraste entre o verde intenso e os detalhes em aço cria um visual clássico, ideal para complementar produções casuais ou mais arrumadas.",
+    "destaque": true
+  },
+  {
+    "sku": "VEX-003",
+    "nome": "Calça jeans azul",
+    "categoria": "Moda",
+    "preco_centavos": 16990,
+    "imagem": "IMG_9967.webp",
+    "descricao": "Calça jeans em lavagem azul média com áreas levemente desbotadas e modelagem de pernas amplas. Uma peça versátil para combinar com camisetas, camisas e tênis em looks de diferentes estilos.",
+    "destaque": false
+  },
+  {
+    "sku": "VEX-004",
+    "nome": "Perfume Bossa",
+    "categoria": "Beleza",
+    "preco_centavos": 18990,
+    "imagem": "IMG_9969.webp",
+    "descricao": "Perfume Bossa apresentado em frasco transparente com detalhes dourados e rótulo ilustrado em tons de azul. A embalagem combina elegância e leveza, sendo uma boa escolha para quem aprecia frascos de perfume com identidade visual marcante.",
+    "destaque": false
+  },
+  {
+    "sku": "VEX-005",
+    "nome": "Pulseira prateada",
+    "categoria": "Acessórios",
+    "preco_centavos": 8990,
+    "imagem": "IMG_9968.webp",
+    "descricao": "Pulseira rígida prateada com detalhe central escuro e acabamento com pequenos elementos brilhantes. O desenho delicado permite usá-la sozinha ou combinada com outros acessórios.",
+    "destaque": false
+  },
+  {
+    "sku": "VEX-006",
+    "nome": "Tênis Samba claro",
+    "categoria": "Calçados",
+    "preco_centavos": 44990,
+    "imagem": "IMG_9970.webp",
+    "descricao": "Tênis de estilo Samba em tom creme, com listras escuras nas laterais e solado caramelo. O perfil baixo e a combinação de cores neutras tornam o modelo fácil de combinar com jeans, calças de alfaiataria e peças casuais.",
+    "destaque": true
+  },
+  {
+    "sku": "VEX-007",
+    "nome": "Loção corporal vermelha",
+    "categoria": "Beleza",
+    "preco_centavos": 23990,
+    "imagem": "IMG_9971.webp",
+    "descricao": "Loção corporal Eau de Rhubarbe Écarlate em frasco vermelho com válvula dosadora preta. A apresentação elegante e a embalagem de linhas retas trazem um toque sofisticado à rotina de cuidados pessoais.",
+    "destaque": false
+  },
+  {
+    "sku": "VEX-008",
+    "nome": "Bolsa verde oliva",
+    "categoria": "Bolsas",
+    "preco_centavos": 32990,
+    "imagem": "IMG_9972.webp",
+    "descricao": "Bolsa de mão verde-oliva com formato estruturado, alça superior e detalhe metálico frontal. O tom terroso funciona como ponto de cor discreto em produções para o dia ou para a noite.",
+    "destaque": true
+  },
+  {
+    "sku": "VEX-009",
+    "nome": "Bolsa jeans e couro",
+    "categoria": "Bolsas",
+    "preco_centavos": 45990,
+    "imagem": "IMG_9973.webp",
+    "descricao": "Bolsa compacta com corpo em jeans azul, alças escuras e detalhes em tom marrom. O contraste de materiais cria um visual moderno e marcante para acompanhar diferentes combinações de roupa.",
+    "destaque": false
+  },
+  {
+    "sku": "VEX-010",
+    "nome": "Óculos tartaruga",
+    "categoria": "Acessórios",
+    "preco_centavos": 14990,
+    "imagem": "IMG_9974.webp",
+    "descricao": "Armação de óculos retangular em tons de marrom com efeito tartaruga. Seu formato geométrico dá personalidade ao visual e combina com looks clássicos e contemporâneos. Lentes de demonstração na imagem.",
+    "destaque": false
+  },
+  {
+    "sku": "VEX-011",
+    "nome": "Camiseta preta cerejas",
+    "categoria": "Moda",
+    "preco_centavos": 7990,
+    "imagem": "IMG_9975.webp",
+    "descricao": "Camiseta preta de modelagem ampla com estampa frontal de cerejas vermelhas e lettering em tons claros. Uma peça descontraída para looks urbanos, especialmente com jeans, shorts ou saias.",
+    "destaque": false
+  },
+  {
+    "sku": "VEX-012",
+    "nome": "Camiseta vermelha estampada",
+    "categoria": "Moda",
+    "preco_centavos": 7990,
+    "imagem": "IMG_9976.webp",
+    "descricao": "Camiseta vermelha de manga curta com estampa central de peixe em contraste. O desenho chama atenção e adiciona um toque criativo às produções casuais.",
+    "destaque": false
+  },
+  {
+    "sku": "VEX-013",
+    "nome": "Bolsa esportiva azul-marinho",
+    "categoria": "Bolsas",
+    "preco_centavos": 27990,
+    "imagem": "IMG_9977.webp",
+    "descricao": "Bolsa esportiva azul-marinho com alças superiores e bolso externo com zíper. O formato compacto e funcional é uma alternativa para levar objetos pessoais na rotina ou em passeios.",
+    "destaque": false
+  },
+  {
+    "sku": "VEX-014",
+    "nome": "Mochila verde água",
+    "categoria": "Bolsas",
+    "preco_centavos": 31990,
+    "imagem": "IMG_9978.webp",
+    "descricao": "Mochila verde-água com compartimento principal, bolsos frontais e puxadores de zíper aparentes. A organização externa e a cor suave fazem dela uma opção prática e estilosa para o cotidiano.",
+    "destaque": true
+  }
+]

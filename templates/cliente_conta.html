@@ -1,0 +1,197 @@
+
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1">
+
+    <title>Minha conta • Vexa</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/cliente.css') }}">
+</head>
+
+<body class="account-page">
+
+    <header class="account-header">
+
+        <a class="account-logo" href="/">
+            <img
+                src="{{ url_for('static', filename='img/logo-vexa.png') }}"
+                alt="Vexa">
+        </a>
+
+        <a class="account-back" href="/">
+            ← Voltar à loja
+        </a>
+
+    </header>
+
+    <main class="my-account">
+
+        <div class="my-account-title">
+
+            <div>
+                <p class="kicker">MINHA CONTA • VEXA</p>
+
+                <h1>
+                    Olá, {{ nome or 'cliente Vexa' }}!
+                    <span>✦</span>
+                </h1>
+
+                <p>
+                    Seu perfil e seus pedidos preparados
+                    para o WhatsApp, em um só lugar.
+                </p>
+            </div>
+
+            <form method="post" action="/cliente/sair">
+
+                <input
+                    type="hidden"
+                    name="csrf_token"
+                    value="{{ csrf }}">
+
+                <button type="submit" class="outline">
+                    Sair da conta ↗
+                </button>
+
+            </form>
+
+        </div>
+
+        {% if erro %}
+        <div class="alert error">
+            {{ erro }}
+        </div>
+        {% endif %}
+
+        <div class="account-layout">
+
+            <section class="account-panel">
+
+                <p class="kicker">MEU PERFIL</p>
+
+                <h2>Seus dados</h2>
+
+                <form
+                    method="post"
+                    action="/cliente/perfil"
+                    class="account-form">
+
+                    <input
+                        type="hidden"
+                        name="csrf_token"
+                        value="{{ csrf }}">
+
+                    <label for="nome">Nome</label>
+
+                    <input
+                        type="text"
+                        id="nome"
+                        name="nome"
+                        minlength="2"
+                        maxlength="100"
+                        value="{{ nome }}"
+                        required>
+
+                    <label for="email">E-mail</label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        value="{{ email }}"
+                        disabled>
+
+                    <small>
+                        O e-mail da conta é gerenciado
+                        pelo Supabase.
+                    </small>
+
+                    <button type="submit" class="primary">
+                        Salvar meu nome ↗
+                    </button>
+
+                </form>
+
+            </section>
+
+            <section class="account-panel orders-panel">
+
+                <p class="kicker">ACOMPANHAMENTO</p>
+
+                <h2>Pedidos preparados</h2>
+
+                <p class="account-note">
+                    Aqui ficam os pedidos para os quais você
+                    gerou um link do WhatsApp.
+                    Isso não comprova que a mensagem foi enviada
+                    ou que a compra foi realizada.
+                </p>
+
+                {% if pedidos %}
+
+                    {% for pedido in pedidos %}
+
+                    <article class="order-entry">
+
+                        <div class="order-head">
+
+                            <strong>
+                                Pedido {{ pedido.id[:8]|upper }}
+                            </strong>
+
+                            <span>Preparado</span>
+
+                        </div>
+
+                        <ul>
+
+                            {% for item in pedido.itens %}
+
+                            <li>
+                                {{ item.quantidade }}x
+                                {{ item.nome }}
+                                —
+                                R$
+                                {{ ('%.2f' % (item.subtotal_centavos / 100)).replace('.', ',') }}
+                            </li>
+
+                            {% endfor %}
+
+                        </ul>
+
+                        <p>
+                            <b>
+                                Total: R$
+                                {{ ('%.2f' % (pedido.total_centavos / 100)).replace('.', ',') }}
+                            </b>
+                        </p>
+
+                    </article>
+
+                    {% endfor %}
+
+                {% else %}
+
+                    <div class="no-orders">
+                        Ainda não há pedidos preparados
+                        nesta conta.
+
+                        Explore a loja e envie seu primeiro
+                        carrinho pelo WhatsApp.
+                    </div>
+
+                {% endif %}
+
+            </section>
+
+        </div>
+
+    </main>
+
+</body>
+</html>

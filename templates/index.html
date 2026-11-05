@@ -1,0 +1,822 @@
+
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1">
+
+    <meta name="theme-color" content="#d8eeff">
+
+    <meta
+        name="description"
+        content="Vexa — estilo, tendências e escolhas para todos os dias.">
+
+    <title>Vexa — Sua vitrine de estilo</title>
+
+    <link
+        rel="icon"
+        href="{{ url_for('static', filename='img/favicon.svg') }}"
+        type="image/svg+xml">
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <!-- TOPO DA LOJA -->
+
+    <div class="topbar">
+        <span>VEXA STORE</span>
+
+        <span>
+            Escolhas com personalidade •
+            Explore nossa seleção
+        </span>
+
+        <span>✦ DESCOBRIR</span>
+    </div>
+
+    <!-- MENU PRINCIPAL -->
+
+    <header class="site-header">
+
+        <div class="container header-inner">
+
+            <a class="brand" href="#inicio" aria-label="Vexa, início">
+
+                <img
+                    src="{{ url_for('static', filename='img/logo-vexa.png') }}"
+                    alt="Logo Vexa">
+
+            </a>
+
+            <nav class="nav-main" aria-label="Menu principal">
+
+                <a href="#inicio">Início</a>
+                <a href="#catalogo">Produtos</a>
+                <a href="#categorias">Categorias</a>
+                <a href="#sobre">Sobre a Vexa</a>
+                <a href="/cliente">Minha conta</a>
+
+            </nav>
+
+            <div class="header-actions">
+
+                <!-- PESQUISA -->
+
+                <button
+                    class="icon-button search-shortcut"
+                    type="button"
+                    id="goSearch"
+                    aria-label="Pesquisar produtos">
+
+                    <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.8">
+
+                        <circle
+                            cx="10.8"
+                            cy="10.8"
+                            r="6.8">
+                        </circle>
+
+                        <path d="m16 16 5 5"></path>
+
+                    </svg>
+
+                </button>
+
+                <!-- ADMINISTRADOR -->
+
+                <a
+                    class="icon-button admin-shortcut"
+                    href="/admin/login"
+                    aria-label="Área administrativa"
+                    title="Área administrativa">
+
+                    <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.8">
+
+                        <circle cx="12" cy="8" r="3.7"></circle>
+                        <path d="M4.8 20a7.2 7.2 0 0 1 14.4 0"></path>
+
+                    </svg>
+
+                </a>
+
+                <!-- CARRINHO -->
+
+                <button
+                    class="cart-icon"
+                    id="cartOpen"
+                    type="button"
+                    aria-label="Abrir carrinho">
+
+                    <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.8">
+
+                        <path d="M3 4h2l2.1 11.2a2 2 0 0 0 2 1.6h9.3a2 2 0 0 0 1.9-1.5L22 8H6"></path>
+
+                        <circle cx="10" cy="21" r="1"></circle>
+                        <circle cx="19" cy="21" r="1"></circle>
+
+                    </svg>
+
+                    <span
+                        id="cartCount"
+                        class="cart-count">0</span>
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </header>
+
+    <main>
+
+        <!-- PAGINA INICIAL -->
+
+        <section class="hero" id="inicio">
+
+            <div class="container hero-inner">
+
+                <div class="hero-copy">
+
+                    <div class="eyebrow">
+                        <span class="eyebrow-dot"></span>
+                        SUA NOVA LOJA FAVORITA
+                    </div>
+
+                    <h1>
+                        Seu estilo.<br>
+                        Suas escolhas.<br>
+                        <em>Seu Lifestyle.</em>
+                    </h1>
+
+                    <p>
+                        Do essencial ao inesperado.
+                        Descubra uma seleção feita para
+                        acompanhar o seu jeito de ser.
+                    </p>
+
+                    <div class="hero-buttons">
+
+                        <a
+                            class="btn btn-primary"
+                            href="#catalogo">
+
+                            Explorar produtos
+                            <span aria-hidden="true">↗</span>
+
+                        </a>
+
+                        <a
+                            class="btn btn-ghost"
+                            href="#categorias">
+
+                            Ver categorias
+                            <span aria-hidden="true">→</span>
+
+                        </a>
+
+                    </div>
+
+                    <div class="hero-meta">
+
+                        <span class="tiny-stars">
+                            ✦ ✦ ✦
+                        </span>
+
+                        <span>14 produtos para descobrir</span>
+
+                        <span class="meta-sep">•</span>
+
+                        <span>Uma loja, muitos estilos</span>
+
+                    </div>
+
+                </div>
+
+                <!-- IMAGENS DA VEXA -->
+
+                <div
+                    class="hero-visual"
+                    aria-label="Seleção de produtos Vexa">
+
+                    <div class="hero-ring ring-1"></div>
+                    <div class="hero-ring ring-2"></div>
+
+                    <span class="hero-mini-tag">
+                        ESSENCIAIS &amp; ACHADOS
+                    </span>
+
+                    <!-- LOGO AZUL E BRANCA -->
+
+                    <div class="hero-img hero-img-main hero-img-main--marca">
+
+                        <img
+                            src="{{ url_for('static', filename='img/vexa-azul-branca.png') }}"
+                            alt="Logo azul e branca da Vexa"
+                            loading="eager">
+
+                    </div>
+
+                    <!-- TENIS -->
+
+                    <div class="hero-img hero-img-small top">
+
+                        <img
+                            src="{{ url_for('static', filename='img/produtos/IMG_9970.webp') }}"
+                            alt="Tênis claro">
+
+                    </div>
+
+                    <!-- RELOGIO -->
+
+                    <div class="hero-img hero-img-small bottom">
+
+                        <img
+                            src="{{ url_for('static', filename='img/produtos/IMG_9966.webp') }}"
+                            alt="Relógio verde">
+
+                    </div>
+
+                    <!-- PROMO PROMO -->
+
+                    <div class="hero-img hero-img-small promo">
+
+                        <img
+                            src="{{ url_for('static', filename='img/vexa-promo.png') }}"
+                            alt="Arte promocional Vexa">
+
+                    </div>
+
+                    <div class="floating-note">
+
+                        <span>✦</span>
+
+                        <div>
+                            <strong>Curadoria Vexa</strong>
+                            <small>Peças que chamam atenção</small>
+                        </div>
+
+                    </div>
+
+                    <span class="hero-bg-word">VEXA</span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- BENEFICIOS -->
+
+        <section class="benefit-band">
+
+            <div class="container band-inner">
+
+                <span>
+                    <b>✧</b>
+                    Escolhas para todos os estilos
+                </span>
+
+                <span class="band-dot">✦</span>
+
+                <span>
+                    <b>◎</b>
+                    Produtos em várias categorias
+                </span>
+
+                <span class="band-dot">✦</span>
+
+                <span>
+                    <b>♡</b>
+                    Seu carrinho, do seu jeito
+                </span>
+
+            </div>
+
+        </section>
+
+        <!-- CATEGORIAS -->
+
+        <section class="section categories-section" id="categorias">
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <p class="section-kicker">
+                            EXPLORE A VEXA
+                        </p>
+
+                        <h2>
+                            Cada escolha conta<br>
+                            <em>uma história.</em>
+                        </h2>
+
+                    </div>
+
+                    <p>
+                        Encontre aquele detalhe que combina com você,
+                        seja qual for o seu estilo.
+                    </p>
+
+                </div>
+
+                <div class="category-tiles">
+
+                    <!-- BOLSAS -->
+
+                    <button
+                        class="category-tile cat-bolsas"
+                        data-cat="Bolsas">
+
+                        <img
+                            src="{{ url_for('static', filename='img/produtos/IMG_9978.webp') }}"
+                            alt="Mochila verde água">
+
+                        <div>
+
+                            <span>01 / COMBINE</span>
+                            <strong>Bolsas</strong>
+                            <small>Explorar ↗</small>
+
+                        </div>
+
+                    </button>
+
+                    <!-- MODA -->
+
+                    <button
+                        class="category-tile cat-moda"
+                        data-cat="Moda">
+
+                        <img
+                            src="{{ url_for('static', filename='img/produtos/IMG_9975.webp') }}"
+                            alt="Camiseta preta">
+
+                        <div>
+
+                            <span>02 / EXPRESSE</span>
+                            <strong>Moda</strong>
+                            <small>Explorar ↗</small>
+
+                        </div>
+
+                    </button>
+
+                    <!-- ACESSORIOS -->
+
+                    <button
+                        class="category-tile cat-acessorios"
+                        data-cat="Acessórios">
+
+                        <img
+                            src="{{ url_for('static', filename='img/produtos/IMG_9966.webp') }}"
+                            alt="Relógio prateado">
+
+                        <div>
+
+                            <span>03 / DESTAQUE</span>
+                            <strong>Acessórios</strong>
+                            <small>Explorar ↗</small>
+
+                        </div>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- CATALOGO -->
+
+        <section class="section products-section" id="catalogo">
+
+            <div class="container">
+
+                <div class="catalog-head">
+
+                    <div>
+
+                        <p class="section-kicker">
+                            GARIMPE SEUS FAVORITOS
+                        </p>
+
+                        <h2>
+                            Descubra a
+                            <em>coleção.</em>
+                        </h2>
+
+                    </div>
+
+                    <div class="catalog-side">
+
+                        <span id="resultsCount">
+                            14 produtos
+                        </span>
+
+                        <span class="catalog-line"></span>
+
+                        <span>VEXA EDITION</span>
+
+                    </div>
+
+                </div>
+
+                <div class="catalog-toolbar">
+
+                    <div class="filters" id="filters">
+
+                        <button
+                            class="filter-chip active"
+                            data-cat="Todos"
+                            type="button">Todos</button>
+
+                        <button
+                            class="filter-chip"
+                            data-cat="Moda"
+                            type="button">Moda</button>
+
+                        <button
+                            class="filter-chip"
+                            data-cat="Bolsas"
+                            type="button">Bolsas</button>
+
+                        <button
+                            class="filter-chip"
+                            data-cat="Acessórios"
+                            type="button">Acessórios</button>
+
+                        <button
+                            class="filter-chip"
+                            data-cat="Calçados"
+                            type="button">Calçados</button>
+
+                        <button
+                            class="filter-chip"
+                            data-cat="Beleza"
+                            type="button">Beleza</button>
+
+                        <button
+                            class="filter-chip"
+                            data-cat="Tecnologia"
+                            type="button">Tecnologia</button>
+
+                    </div>
+
+                    <!-- PESQUISA DE PRODUTOS -->
+
+                    <div class="search-wrap">
+
+                        <svg
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2">
+
+                            <circle
+                                cx="10"
+                                cy="10"
+                                r="6.5">
+                            </circle>
+
+                            <path d="m15 15 6 6"></path>
+
+                        </svg>
+
+                        <input
+                            id="searchInput"
+                            maxlength="100"
+                            aria-label="Buscar produto"
+                            placeholder="Buscar produto...">
+
+                    </div>
+
+                </div>
+
+                <!-- PRODUTOS DO MONGODB -->
+
+                <div
+                    id="productGrid"
+                    class="product-grid"
+                    aria-live="polite">
+
+                    <p class="loading-text">
+                        Carregando a coleção...
+                    </p>
+
+                </div>
+
+                <p
+                    class="error-text"
+                    id="catalogError"
+                    hidden>
+                </p>
+
+                {% if demo_mode %}
+
+                <p class="demo-disclaimer">
+                    Modo demonstração: produtos e preços
+                    são ilustrativos. Configure o arquivo
+                    <code>.env</code> e desative
+                    <code>DEMO_MODE</code>
+                    para utilizar os bancos reais.
+                </p>
+
+                {% endif %}
+
+            </div>
+
+        </section>
+
+        <!-- HISTORICO DO REDIS -->
+
+        <section
+            class="section recently-section"
+            id="recentSection"
+            hidden>
+
+            <div class="container">
+
+                <div class="section-heading recent-heading">
+
+                    <div>
+
+                        <p class="section-kicker">
+                            VOCÊ PASSOU POR AQUI
+                        </p>
+
+                        <h2>
+                            Vistos
+                            <em>recentemente.</em>
+                        </h2>
+
+                    </div>
+
+                    <p id="recentExplainer">
+                        Encontre de novo os produtos
+                        que despertaram seu interesse.
+                    </p>
+
+                </div>
+
+                <div
+                    class="recent-grid"
+                    id="recentGrid">
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- BANNER DA MARCA -->
+
+        <section class="brand-banner" id="sobre">
+
+            <div class="container banner-inner">
+
+                <div class="brand-symbol">
+                    V<span>✦</span>
+                </div>
+
+                <div>
+
+                    <p>MAIS DO QUE PRODUTOS</p>
+
+                    <h2>
+                        Seu mundo tem
+                        <em>muitas versões.</em><br>
+                        Explore todas elas.
+                    </h2>
+
+                    <span>
+                        Vexa. Descubra. Escolha. Combine.
+                    </span>
+
+                </div>
+
+                <a
+                    class="btn btn-white"
+                    href="#catalogo">
+
+                    Voltar à coleção ↗
+
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- RODAPE -->
+
+    <footer class="footer">
+
+        <div class="container footer-top">
+
+            <div>
+
+                <img
+                    class="footer-logo"
+                    src="{{ url_for('static', filename='img/logo-vexa.png') }}"
+                    alt="Vexa">
+
+                <p>
+                    Uma vitrine para o seu estilo.<br>
+                    Do seu jeito, todos os dias.
+                </p>
+
+            </div>
+
+            <div>
+
+                <strong>Explore</strong>
+
+                <a href="#inicio">Início</a>
+                <a href="#catalogo">Produtos</a>
+                <a href="#categorias">Categorias</a>
+
+            </div>
+
+            <div>
+
+                <strong>Área da loja</strong>
+
+                <a href="/cliente">Minha conta</a>
+
+                <a href="/cliente/cadastro">
+                    Criar conta
+                </a>
+
+                <a href="/admin/login">
+                    Painel administrativo
+                </a>
+
+                <a href="/admin/preview">
+                    Prévia do painel
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="container footer-bottom">
+
+            <small>
+                © 2026 Vexa • Projeto acadêmico de e-commerce
+            </small>
+
+            <small>
+                Feito para você descobrir mais ✦
+            </small>
+
+        </div>
+
+    </footer>
+
+    <!-- CARRINHO -->
+
+    <div
+        class="screen-shade"
+        id="screenShade"
+        hidden>
+    </div>
+
+    <aside
+        class="cart-drawer"
+        id="cartDrawer"
+        aria-label="Seu carrinho"
+        aria-modal="true"
+        role="dialog"
+        hidden>
+
+        <div class="drawer-head">
+
+            <div>
+
+                <small>SUA SELEÇÃO</small>
+
+                <h2>
+                    Meu carrinho
+                    <span>🛍</span>
+                </h2>
+
+            </div>
+
+            <button
+                class="close-btn"
+                id="cartClose"
+                aria-label="Fechar carrinho">
+
+                ✕
+
+            </button>
+
+        </div>
+
+        <div
+            class="drawer-body"
+            id="cartItems">
+        </div>
+
+        <div class="drawer-foot">
+
+            <div class="cart-total">
+
+                <span>Total estimado</span>
+
+                <strong id="cartTotal">
+                    R$ 0,00
+                </strong>
+
+            </div>
+
+            <p>
+                O pedido será enviado pelo WhatsApp.
+                Não há pagamento neste site.
+            </p>
+
+            <button
+                class="btn btn-primary checkout-btn"
+                id="checkoutBtn"
+                type="button">
+
+                Enviar pedido pelo WhatsApp
+                <span>↗</span>
+
+            </button>
+
+        </div>
+
+    </aside>
+
+    <!-- DETALHES DO PRODUTO -->
+
+    <div
+        class="product-modal"
+        id="productModal"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Detalhes do produto"
+        hidden>
+
+        <button
+            class="close-btn modal-close"
+            id="modalClose"
+            aria-label="Fechar detalhes">
+
+            ✕
+
+        </button>
+
+        <div id="modalContent"></div>
+
+    </div>
+
+    <!-- NOTIFICACOES -->
+
+    <div
+        class="toast"
+        id="toast"
+        role="status"
+        aria-live="polite">
+    </div>
+
+    <!-- CONFIGURACAO DO FLASK -->
+
+    <script>
+        window.VEXA_CONFIG = {
+            demo: {{ demo_mode|tojson }},
+            whatsapp: {{ wa_number|tojson }}
+        };
+    </script>
+
+    <script
+        src="{{ url_for('static', filename='js/app.js') }}"
+        defer>
+    </script>
+
+</body>
+</html>
